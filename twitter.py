@@ -1,8 +1,24 @@
 from selenium import webdriver
+import pandas as pd
+print('Welcome to Tweakter - A Twitter Automation')
 
-Uname=input('Twitter Username: ')
-Pass=input('Twitter Password: ')
-
+auto=input('Use auto-login(For Old users)(Y/N):')
+if(auto == 'Y' ):
+    f= open('Data.txt','r')
+    Uname= f.readline()
+    Pass= f.readline()
+    f.close()
+elif(auto=='N'):    
+    Uname=input('Twitter Username: ')
+    Pass=input('Twitter Password: ')
+    choice=input('Save details for auto-login?(Y/N):')
+    if (choice=='Y'):
+        f= open('Data.txt','w')
+        f.write(Uname)
+        f.write('\n')
+        f.write(Pass)
+        f.close()
+        
 browser= webdriver.Chrome()
 browser.get('https://twitter.com/login')
     
